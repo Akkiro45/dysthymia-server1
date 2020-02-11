@@ -6,7 +6,7 @@
   },
   "development": {
     "PORT": 4000,
-    "MONGODB_URI": "",
+    "MONGODB_URI": "mongodb://localhost:27017/DysthymiaApp",
     "JWT_SECRET": "asjsbjbgklqewtyhkjbedfljowji7gj"
   }
 }

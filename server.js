@@ -12,7 +12,7 @@ const statsRoute = require('./routes/stats');
 const app = express();
 const port = process.env.PORT;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(helmet());
 app.use(cors());
 
