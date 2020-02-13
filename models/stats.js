@@ -34,8 +34,7 @@ const StatsSchema = new mongoose.Schema({
   activities: [
     {
       time: { type: Number },
-      type: { type: String },
-      confidence: { type: Number }
+      stats: { type: mongoose.Schema.Types.Mixed }
     }
   ],
   callStats: [
