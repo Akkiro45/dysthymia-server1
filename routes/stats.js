@@ -7,6 +7,7 @@ const { authenticate } = require('../middlewares/authenticate');
 const router = express.Router();
 
 router.post('/post', authenticate, (req, res) => {
+  return res.status(400).send({ msg: 'UnderMainainance!' });
   const body = _.pick(req.body, ['stats']);
   let resBody = {};
   let error = {};
