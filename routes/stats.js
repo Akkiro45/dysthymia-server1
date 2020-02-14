@@ -22,7 +22,7 @@ router.post('/post', authenticate, (req, res) => {
       Object.keys(body.stats).forEach(key => {
         if(key === 'activities') {
           if(Array.isArray(body.stats[key])) {
-            stats[key] = stats[key].concat(body.stats[key]);
+            // stats[key] = stats[key].concat(body.stats[key]);
           } else {
             stats[key].push(body.stats[key]);
           }
