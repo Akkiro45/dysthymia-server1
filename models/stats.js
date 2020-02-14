@@ -33,7 +33,7 @@ const StatsSchema = new mongoose.Schema({
   ],
   activities: [
     {
-      date: { type: Number },
+      date: { type: String },
       stats: { type: mongoose.Schema.Types.Mixed }
     }
   ],
