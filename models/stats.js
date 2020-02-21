@@ -12,6 +12,12 @@ const StatsSchema = new mongoose.Schema({
       count: { type: Number }
     }
   ],
+  stepCounter: [
+    {
+      date: { type: String },
+      steps: { type: Number }
+    }
+  ],
   screenOnTime: [
     {
       date: { type: String },
@@ -34,6 +40,12 @@ const StatsSchema = new mongoose.Schema({
     }
   ],
   activities: [
+    {
+      date: { type: String },
+      stats: { type: mongoose.Schema.Types.Mixed }
+    }
+  ],
+  lightSensor: [
     {
       date: { type: String },
       stats: { type: mongoose.Schema.Types.Mixed }
