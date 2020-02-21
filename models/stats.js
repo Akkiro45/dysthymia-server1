@@ -22,7 +22,9 @@ const StatsSchema = new mongoose.Schema({
     {
       date: { type: String },
       count: { type: Number },
-      apps: { type: mongoose.Schema.Types.Mixed }
+      clickedCount: { type: Number },
+      apps: { type: mongoose.Schema.Types.Mixed },
+      clicked: { type: mongoose.Schema.Types.Mixed }
     }
   ],
   headsetPlug: [
