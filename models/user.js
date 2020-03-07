@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     required: true,
     minlength: 2,
-    maxlength: 60,
+    maxlength: 20,
     unique: true
   },
   password: {
@@ -20,6 +20,17 @@ const UserSchema = new mongoose.Schema({
   createdAt: {
     type: Number,
     required: true
+  },
+  profile: {
+    dob: {
+      day: { type: Number },
+      month: { type: Number },
+      year: { type: Number }
+    },
+    gender: { type: String },
+    profileEmoji: { type: String },
+    height: { type: Number },
+    weight: { type: Number }
   },
   tokens: [
     {

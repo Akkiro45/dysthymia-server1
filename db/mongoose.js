@@ -17,4 +17,4 @@ module.exports = {
 }
 
 // mongodb://localhost:27017/DysthymiaApp
-// mongodb+srv://Dysthymia:Dysthymia101@cluster0-8tmy8.mongodb.net/test?retryWrites=true&w=majority
+// mongodb+srv://Dysthymia:Dysthymia101@cluster0-8tmy8.mongodb.net/dysthymia?retryWrites=true&w=majority

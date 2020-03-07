@@ -41,7 +41,7 @@ router.post('/signin', (req, res) => {
   User.findByCredentials(body.userName, body.password)
     .then(user => {
       resBody.status = 'ok';
-      resBody.data = _.pick(user, ['userName', 'createdAt', '_id']);
+      resBody.data = _.pick(user, ['userName', 'createdAt', '_id', 'profile']);
       return user.generateAuthToken();
     })
       .then(token => {
@@ -64,6 +64,22 @@ router.delete('/signout', authenticate, (req, res) => {
   req.user.removeToken(req.token)
     .then(() => {
       resBody.status = 'ok';
+      return res.status(200).send(resBody);
+    })
+    .catch(e => {
+      resBody.status = 'error';
+      return res.status(400).send(resBody);
+    });
+});
+
+router.post('/profile', authenticate, (req, res) => {
+  const profile = _.pick(req.body, ['dob', 'gender', 'profileEmoji', 'height', 'weight']);
+  let resBody = {};
+  let error = {};
+  User.findOneAndUpdate({ _id: req.user._id }, { profile },  { new: true })
+    .then(user => {
+      resBody.status = 'ok';
+      resBody.data = _.pick(user, ['userName', 'createdAt', '_id', 'profile']);
       return res.status(200).send(resBody);
     })
     .catch(e => {
