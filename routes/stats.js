@@ -20,15 +20,16 @@ router.post('/post', authenticate, (req, res) => {
         stats = new Stats(statsBody);
       }
       Object.keys(body.stats).forEach(key => {
-        if(key === 'activities') {
-          if(Array.isArray(body.stats[key])) {
-            // stats[key] = stats[key].concat(body.stats[key]);
-          } else {
-            stats[key].push(body.stats[key]);
-          }
-        } else {
-          stats[key].push(body.stats[key]);
-        }
+        // if(key === 'activities') {
+        //   if(Array.isArray(body.stats[key])) {
+        //     // stats[key] = stats[key].concat(body.stats[key]);
+        //   } else {
+        //     stats[key].push(body.stats[key]);
+        //   }
+        // } else {
+        //   stats[key].push(body.stats[key]);
+        // }
+        stats[key].push(body.stats[key]);
       });
       stats.save({ checkKeys: false })
         .then(() => {
@@ -108,6 +109,29 @@ router.get('/get', authenticate, (req, res) => {
       return res.status(404).send(resBody);
     });
 });
+
+router.get('/:type', authenticate, (req, res) => {
+  let resBody = {};
+  let error = {};
+  const pageNumber = parseInt(req.query.pageNumber);
+  const pageSize = parseInt(req.query.pageSize);
+  const type = req.params.type;
+  Stats.findOne({ userID: req.user._id })
+    .select({ [type]: 1 })
+    .then(stats => {
+      const start = (pageNumber - 1) * pageSize;
+      const end = pageNumber * pageSize;
+      resBody.data = stats[type].reverse().slice(start, end);
+      resBody.status = 'ok';
+      return res.send(resBody);
+    })
+    .catch(e => {
+      error.msg = 'Not Found!';
+      resBody.status = 'error';
+      resBody.error = error;
+      return res.status(404).send(resBody);
+    });
+})
 
 // router.post('/rmv/:id', (req, res) => {
 //   const id = req.params.id;
