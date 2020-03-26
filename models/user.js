@@ -30,7 +30,10 @@ const UserSchema = new mongoose.Schema({
     gender: { type: String },
     profileEmoji: { type: String },
     height: { type: Number },
-    weight: { type: Number }
+    weight: { type: Number },
+    emailIds: [
+      { type: String }
+    ]
   },
   tokens: [
     {

@@ -73,7 +73,7 @@ router.delete('/signout', authenticate, (req, res) => {
 });
 
 router.post('/profile', authenticate, (req, res) => {
-  const profile = _.pick(req.body, ['dob', 'gender', 'profileEmoji', 'height', 'weight']);
+  const profile = _.pick(req.body, ['dob', 'gender', 'profileEmoji', 'height', 'weight', 'emailIds']);
   let resBody = {};
   let error = {};
   User.findOneAndUpdate({ _id: req.user._id }, { profile },  { new: true })
