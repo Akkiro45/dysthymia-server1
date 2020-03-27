@@ -89,13 +89,15 @@ router.post('/post', authenticate, (req, res) => {
 // });
 
 router.get('/get', authenticate, (req, res) => {
-  const body = _.pick(req.body, ['stats']);
   let resBody = {};
   let error = {};
   Stats.findOne({ userID: req.user._id })
     .then(stats => {
       if(stats) {
-        resBody.data = stats;
+        resBody.data = {
+          data: stats,
+          user: _.pick(req.user, ['userName', 'profile'])
+        };
         resBody.status = 'ok';
       } else {
         resBody.status = 'error';
