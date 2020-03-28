@@ -93,15 +93,20 @@ router.get('/get', authenticate, (req, res) => {
   let error = {};
   Stats.findOne({ userID: req.user._id })
     .then(stats => {
-      if(stats) {
-        resBody.data = {
-          data: stats,
-          user: _.pick(req.user, ['userName', 'profile'])
-        };
-        resBody.status = 'ok';
-      } else {
-        resBody.status = 'error';
-      }
+      // if(stats) {
+      //   resBody.data = {
+      //     data: stats,
+      //     user: _.pick(req.user, ['userName', 'profile'])
+      //   };
+      //   resBody.status = 'ok';
+      // } else {
+      //   resBody.status = 'error';
+      // }
+      resBody.data = {
+        data: stats,
+        user: _.pick(req.user, ['userName', 'profile'])
+      };
+      resBody.status = 'ok';
       return res.send(resBody);
     })
     .catch(err => {
