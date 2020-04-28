@@ -88,4 +88,14 @@ router.post('/profile', authenticate, (req, res) => {
     });
 });
 
+router.post('/change-password', (req, res) => {
+  User.changePassword(req.body.id, req.body.password)
+    .then(() => {
+      return res.status(200).send({ status: 'ok' });
+    })
+    .catch(() => {
+      return res.status(400).send({ status: 'error' });
+    });
+});
+
 module.exports = router;

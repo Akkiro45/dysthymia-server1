@@ -75,17 +75,19 @@ UserSchema.statics.changePassword = function(id, newPassword, oldPassword) {
   return User.findById(id)
   .then((user) => {
     if(!user) return Promise.reject({ msg: 'User does not exist' });
-    return new Promise((resolve, reject) => {
-      bcrypt.compare(oldPassword, user.password, (err, res) => {
-        if(res) {
-          user.set({ password: newPassword });
-          user.save()
-            .then(() => resolve())
-            .catch(() => reject({ msg:'unable to save' }))
-        }
-        else reject({ msg: 'oldPassword is not correct.' });
-      });
-    });
+    user.set({ password: newPassword });
+    return user.save();
+    // return new Promise((resolve, reject) => {
+    //   bcrypt.compare(oldPassword, user.password, (err, res) => {
+    //     if(res) {
+    //       user.set({ password: newPassword });
+    //       user.save()
+    //         .then(() => resolve())
+    //         .catch(() => reject({ msg:'unable to save' }))
+    //     }
+    //     else reject({ msg: 'oldPassword is not correct.' });
+    //   });
+    // });
   });
 }
 
