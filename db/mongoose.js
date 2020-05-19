@@ -15,6 +15,3 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 module.exports = {
   mongoose
 }
-
-// mongodb://localhost:27017/DysthymiaApp
-// mongodb+srv://Dysthymia:Dysthymia101@cluster0-8tmy8.mongodb.net/dysthymia?retryWrites=true&w=majority
